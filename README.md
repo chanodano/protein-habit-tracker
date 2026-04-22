@@ -2,7 +2,7 @@
 
 ## Overview
 
-I set a personal goal to hit **150g of protein daily**, but struggled with one key issue:
+In April 2026, I set a personal goal to hit **150g of protein daily**, but struggled with one key issue:
 
 > **Inconsistent logging.**
 
