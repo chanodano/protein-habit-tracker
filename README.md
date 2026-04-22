@@ -1,5 +1,3 @@
-# protein-habit-tracker
-
 # Telegram Protein Tracker Bot
 
 ## Overview
@@ -70,8 +68,105 @@ The goal was to make logging:
 
 ## Example Workflow
 
-1. User sends:
+**Step 1: User logs an unknown food**
+```
+custom milkshake
+```
 
-2. Bot asks for protein amount
+**Step 2: Bot asks for protein amount**
+```
+🤔 I don't know "custom milkshake" yet.
+How many grams of protein should I log? Send a number, or no to skip.
+```
 
-3. User replies:
+**Step 3: User replies with grams**
+```
+32
+```
+
+**Step 4: Bot logs the entry and asks whether to save it**
+```
+✅ Logged: custom milkshake — 32g
+📊 Today's total: 87g
+
+Save custom milkshake to your food list for next time?
+[✅ Save to food list] [❌ Just this once]
+```
+
+**Step 5: User chooses an option**
+- If saved, the food will be recognised automatically in future  
+- If skipped, it is logged for that day only  
+
+---
+
+## Tech Stack
+
+- **Google Apps Script** (backend logic)
+- **Telegram Bot API** (user interface)
+- **Google Sheets** (data storage)
+- Optional: **Gemini API** (fallback estimation)
+
+---
+
+## Architecture (Simplified)
+
+Telegram → Apps Script (polling) → Parser → Google Sheets → Telegram response
+
+---
+
+## Key Design Decisions
+
+- **Polling over webhooks**  
+  Chosen for reliability within Apps Script environment  
+
+- **Google Sheets as database**  
+  Allows easy inspection and manual updates  
+
+- **State-based interaction flow**  
+  Handles multi-step inputs (e.g. unknown food → confirm grams → save food)  
+
+- **Strict parsing rules**  
+  Prevents incorrect matches (e.g. “milk” inside “milkshake”)  
+
+---
+
+## Screenshots
+
+<img width="842" height="892" alt="Screenshot 2026-04-22 at 2 37 30 PM" src="https://github.com/user-attachments/assets/bc3227c4-2373-49d7-836c-ab7122fbad92" />
+<img width="840" height="891" alt="Screenshot 2026-04-22 at 2 38 28 PM" src="https://github.com/user-attachments/assets/3602430a-4124-4673-8f40-1b6119f8ed70" />
+
+
+---
+
+## Impact
+
+- Reduced friction in daily protein logging  
+- Enabled consistent tracking across multiple days  
+- Simplified data collection into a conversational interface  
+
+---
+
+## Future Improvements
+
+- Edit previous entries (`/editlast`)
+- Weekly summaries
+- Duplicate entry detection
+- Improved parsing for mixed meals
+
+---
+
+## Why this project matters
+
+This project demonstrates:
+
+- Data collection from unstructured inputs  
+- Data transformation into structured format  
+- Lightweight analytics (summaries, streaks, averages)  
+- Workflow automation  
+- Designing user interaction flows  
+
+---
+
+## Author
+
+Chandan Mansukhani
